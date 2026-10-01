@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Mie Dower — Pedasnya Bikin Nagih</title>
+<meta name="description" content="Mie Dower — mie pedas gurih dengan level 1-8. Fresh setiap hari, harga mulai 12rb. Pesan sekarang!" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#FFF7ED;
+    --dark:#1C1917;
+    --muted:#78716C;
+    --red:#DC2626;
+    --red-dark:#B91C1C;
+    --orange:#EA580C;
+    --yellow:#FBBF24;
+    --card:#FFFFFF;
+    --line:#F5E6D3;
+    --radius:20px;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    font-family:'Plus Jakarta Sans',system-ui,-apple-system,sans-serif;
+    background:var(--bg);
+    color:var(--dark);
+    line-height:1.6;
+    overflow-x:hidden;
+  }
+  a{text-decoration:none;color:inherit}
+  .container{max-width:1120px;margin:0 auto;padding:0 20px}
+  /* NAV */
+  nav{
+    position:sticky;top:0;z-index:50;
+    background:rgba(255,247,237,.9);
+    backdrop-filter:blur(12px);
+    border-bottom:1px solid var(--line);
+  }
+  .nav-inner{display:flex;align-items:center;justify-content:space-between;height:68px}
+  .logo{display:flex;align-items:center;gap:10px;font-weight:800;font-size:22px}
+  .logo-mark{
+    width:40px;height:40px;border-radius:12px;
+    background:linear-gradient(135deg,var(--red),var(--orange));
+    display:flex;align-items:center;justify-content:center;
+    color:#fff;font-weight:800;font-size:20px;
+    box-shadow:0 6px 16px rgba(220,38,38,.3);
+  }
+  .logo span em{font-style:normal;color:var(--red)}
+  .nav-links{display:flex;gap:28px;font-weight:600;font-size:15px;color:#44403C}
+  .nav-links a:hover{color:var(--red)}
+  .btn{
+    display:inline-flex;align-items:center;justify-content:center;gap:8px;
+    padding:12px 24px;border-radius:100px;font-weight:700;font-size:15px;
+    border:0;cursor:pointer;transition:.2s;
+  }
+  .btn-primary{background:var(--red);color:#fff;box-shadow:0 8px 20px rgba(220,38,38,.3)}
+  .btn-primary:hover{background:var(--red-dark);transform:translateY(-1px)}
+  .btn-outline{background:#fff;border:2px solid var(--line);color:var(--dark)}
+  .btn-outline:hover{border-color:var(--red);color:var(--red)}
+  .btn-nav{padding:10px 20px}
+  .hamburger{display:none;background:none;border:0;font-size:26px;cursor:pointer}
+  /* HERO */
+  .hero{padding:56px 0 64px;position:relative}
+  .hero-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:48px;align-items:center}
+  .badge{
+    display:inline-flex;align-items:center;gap:8px;
+    background:#FEF2F2;border:1px solid #FECACA;color:var(--red-dark);
+    padding:8px 16px;border-radius:100px;font-size:13px;font-weight:700;
+    margin-bottom:20px;
+  }
+  .pulse{width:8px;height:8px;border-radius:50%;background:#22C55E;animation:pulse 1.5s infinite}
+  @keyframes pulse{0%{box-shadow:0 0 0 0 rgba(34,197,94,.5)}70%{box-shadow:0 0 0 8px rgba(34,197,94,0)}100%{box-shadow:0 0 0 0 rgba(34,197,94,0)}}
+  h1{font-size:clamp(36px,5vw,58px);line-height:1.08;font-weight:800;letter-spacing:-1.5px;margin-bottom:18px}
+  h1 .highlight{
+    background:linear-gradient(135deg,var(--red),var(--orange));
+    -webkit-background-clip:text;background-clip:text;color:transparent;
+  }
+  .hero p.lead{font-size:18px;color:#57534E;margin-bottom:28px;max-width:480px}
+  .hero-cta{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:32px}
+  .hero-stats{display:flex;gap:32px;flex-wrap:wrap}
+  .stat b{font-size:24px;display:block;line-height:1}
+  .stat small{color:var(--muted);font-size:13px;font-weight:600}
+  .stat .stars{color:#F59E0B;font-size:15px;letter-spacing:2px}
+  /* Hero visual */
+  .hero-visual{position:relative}
+  .bowl-card{
+    background:#fff;border-radius:28px;padding:20px;
+    box-shadow:0 20px 60px rgba(0,0,0,.12);
+    border:1px solid var(--line);
+    position:relative;overflow:hidden;
+  }
+  .bowl-img{
+    width:100%;height:340px;object-fit:cover;border-radius:18px;
+    background:linear-gradient(135deg,#FDBA74,#DC2626);
+    display:block;
+  }
+  .price-tag{
+    position:absolute;top:36px;right:36px;
+    background:var(--dark);color:#fff;
+    padding:10px 18px;border-radius:100px;font-weight:800;
+    transform:rotate(6deg);box-shadow:0 8px 20px rgba(0,0,0,.25);
+  }
+  .price-tag small{font-weight:500;opacity:.7;text-decoration:line-through;margin-right:6px}
+  .float-card{
+    position:absolute;background:#fff;border-radius:16px;
+    padding:12px 16px;display:flex;align-items:center;gap:12px;
+    box-shadow:0 12px 32px rgba(0,0,0,.15);
+    font-size:14px;font-weight:700;
+  }
+  .float-1{bottom:70px;left:-24px}
+  .float-2{bottom:-18px;right:24px}
+  .float-icon{width:40px;height:40px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0}
+  /* SECTION */
+  section{padding:64px 0}
+  .section-head{text-align:center;max-width:600px;margin:0 auto 40px}
+  .eyebrow{color:var(--red);font-weight:800;font-size:13px;letter-spacing:2px;text-transform:uppercase;margin-bottom:10px;display:block}
+  h2{font-size:clamp(28px,3.5vw,38px);font-weight:800;letter-spacing:-.8px;margin-bottom:12px}
+  .section-head p{color:var(--muted);font-size:16px}
+  /* Features */
+  .grid-4{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
+  .feat{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:28px 22px;text-align:center;transition:.2s}
+  .feat:hover{transform:translateY(-4px);box-shadow:0 16px 32px rgba(0,0,0,.08)}
+  .feat-icon{width:56px;height:56px;border-radius:16px;margin:0 auto 16px;display:flex;align-items:center;justify-content:center;font-size:26px}
+  .feat h3{font-size:17px;margin-bottom:8px}
+  .feat p{font-size:14px;color:var(--muted)}
+  /* Menu */
+  #menu{background:#fff;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+  .grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+  .menu-card{background:var(--bg);border:1px solid var(--line);border-radius:22px;overflow:hidden;transition:.2s;position:relative}
+  .menu-card:hover{transform:translateY(-4px);box-shadow:0 20px 40px rgba(220,38,38,.12)}
+  .menu-card.popular{border:2px solid var(--red)}
+  .menu-img{height:190px;object-fit:cover;width:100%;display:block}
+  .menu-body{padding:22px}
+  .menu-tag{font-size:11px;font-weight:800;letter-spacing:1px;text-transform:uppercase;padding:5px 12px;border-radius:100px;display:inline-block;margin-bottom:10px}
+  .tag-red{background:#FEE2E2;color:#B91C1C}
+  .tag-orange{background:#FFEDD5;color:#9A3412}
+  .tag-green{background:#DCFCE7;color:#166534}
+  .menu-body h3{font-size:19px;margin-bottom:6px}
+  .menu-body p{font-size:14px;color:var(--muted);margin-bottom:14px}
+  .menu-foot{display:flex;align-items:center;justify-content:space-between}
+  .price{font-size:20px;font-weight:800;color:var(--red)}
+  .price small{font-size:13px;color:var(--muted);font-weight:500}
+  .btn-small{padding:9px 18px;font-size:14px}
+  .best-badge{position:absolute;top:14px;left:14px;background:var(--yellow);color:#713F12;font-size:12px;font-weight:800;padding:6px 14px;border-radius:100px}
+  /* Level */
+  .level-box{background:var(--dark);color:#fff;border-radius:28px;padding:48px 40px;text-align:center;position:relative;overflow:hidden}
+  .level-box::before{content:'';position:absolute;width:400px;height:400px;background:radial-gradient(circle,rgba(220,38,38,.4),transparent);top:-150px;right:-100px}
+  .level-box h2{color:#fff}
+  .level-box p{color:#A8A29E;margin-bottom:28px}
+  .levels{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-bottom:24px;position:relative;z-index:1}
+  .lvl{width:52px;height:52px;border-radius:14px;border:2px solid #44403C;background:#292524;color:#A8A29E;font-weight:800;font-size:18px;cursor:pointer;transition:.15s}
+  .lvl:hover{border-color:var(--orange)}
+  .lvl.active{background:linear-gradient(135deg,var(--red),var(--orange));border-color:transparent;color:#fff;transform:scale(1.1);box-shadow:0 8px 20px rgba(220,38,38,.5)}
+  .level-desc{background:#292524;border-radius:16px;padding:18px 24px;max-width:520px;margin:0 auto;position:relative;z-index:1}
+  .level-desc b{color:var(--yellow)}
+  /* Steps */
+  .grid-steps{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+  .step{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:30px;text-align:center;position:relative}
+  .step-num{width:44px;height:44px;border-radius:50%;background:var(--dark);color:#fff;font-weight:800;display:flex;align-items:center;justify-content:center;margin:0 auto 16px;font-size:18px}
+  /* Testi */
+  #testimoni{background:#fff;border-top:1px solid var(--line)}
+  .testi-card{background:var(--bg);border:1px solid var(--line);border-radius:var(--radius);padding:26px}
+  .testi-card .stars{color:#F59E0B;letter-spacing:2px;margin-bottom:12px}
+  .testi-card p{font-size:15px;margin-bottom:16px}
+  .testi-user{display:flex;align-items:center;gap:12px}
+  .avatar{width:44px;height:44px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:800;color:#fff;font-size:18px}
+  .testi-user b{font-size:14px;display:block}
+  .testi-user small{color:var(--muted);font-size:12px}
+  /* Lokasi / CTA */
+  .cta-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px;align-items:stretch}
+  .info-card{background:#fff;border:1px solid var(--line);border-radius:22px;padding:32px}
+  .info-row{display:flex;gap:14px;margin-bottom:18px;align-items:flex-start}
+  .info-ic{width:44px;height:44px;border-radius:12px;background:#FEF2F2;display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0}
+  .cta-card{background:linear-gradient(135deg,var(--red),#7F1D1D);border-radius:22px;padding:40px 32px;color:#fff;text-align:center;display:flex;flex-direction:column;justify-content:center}
+  .cta-card h3{font-size:26px;margin-bottom:10px}
+  .cta-card p{opacity:.85;margin-bottom:24px}
+  .btn-white{background:#fff;color:var(--red-dark)}
+  .btn-white:hover{transform:translateY(-1px);box-shadow:0 10px 24px rgba(0,0,0,.25)}
+  .btn-wa{background:#22C55E;color:#fff;box-shadow:0 8px 20px rgba(34,197,94,.4)}
+  /* Footer */
+  footer{background:var(--dark);color:#A8A29E;padding:40px 0;text-align:center;font-size:14px}
+  footer b{color:#fff}
+  /* Floating WA */
+  .wa-float{
+    position:fixed;bottom:24px;right:24px;z-index:60;
+    width:60px;height:60px;border-radius:50%;background:#22C55E;
+    display:flex;align-items:center;justify-content:center;
+    box-shadow:0 10px 28px rgba(34,197,94,.5);
+    transition:.2s;
+  }
+  .wa-float:hover{transform:scale(1.08)}
+  /* Responsive */
+  @media(max-width:900px){
+    .hero-grid{grid-template-columns:1fr}
+    .grid-4{grid-template-columns:repeat(2,1fr)}
+    .grid-3,.grid-steps,.cta-grid{grid-template-columns:1fr}
+    .float-1{left:8px}
+    .nav-links{display:none;position:absolute;top:68px;left:0;right:0;background:#fff;flex-direction:column;padding:20px;gap:16px;border-bottom:1px solid var(--line);box-shadow:0 12px 24px rgba(0,0,0,.08)}
+    .nav-links.open{display:flex}
+    .hamburger{display:block}
+    .nav-cta{display:none}
+    .level-box{padding:36px 20px}
+    section{padding:48px 0}
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="container nav-inner">
+    <a href="#" class="logo">
+      <div class="logo-mark">M</div>
+      <span>Mie <em>Dower</em></span>
+    </a>
+    <div class="nav-links" id="navLinks">
+      <a href="#keunggulan">Keunggulan</a>
+      <a href="#menu">Menu</a>
+      <a href="#level">Level Pedas</a>
+      <a href="#testimoni">Testimoni</a>
+      <a href="#kontak">Kontak</a>
+    </div>
+    <a href="https://wa.me/6281234567890?text=Halo%20Mie%20Dower!%20Saya%20mau%20pesan." target="_blank" class="btn btn-primary btn-nav nav-cta">Pesan Sekarang</a>
+    <button class="hamburger" onclick="document.getElementById('navLinks').classList.toggle('open')">☰</button>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="container hero-grid">
+    <div>
+      <div class="badge"><span class="pulse"></span> BUKA SETIAP HARI • 10.00 – 22.00</div>
+      <h1>Pedasnya Bikin Nagih, <span class="highlight">Gurihnya Bikin Balik Lagi.</span></h1>
+      <p class="lead">Mie Dower — mie kenyal dengan bumbu medok dan pilihan level pedas 1–8. Dibuat fresh setiap hari, harga ramah mulai <b>Rp12 ribu</b> aja.</p>
+      <div class="hero-cta">
+        <a href="https://wa.me/6281234567890?text=Halo%20Mie%20Dower!%20Saya%20mau%20pesan%20Mie%20Dower." target="_blank" class="btn btn-primary">Pesan via WhatsApp</a>
+        <a href="#menu" class="btn btn-outline">Lihat Menu</a>
+      </div>
+      <div class="hero-stats">
+        <div class="stat"><b>10rb+</b><small>Porsi terjual</small></div>
+        <div class="stat"><b>4.9<span class="stars"> ★★★★★</span></b><small>Rating 2.300+ ulasan</small></div>
+        <div class="stat"><b>Level 1–8</b><small>Pedas bisa pilih</small></div>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <div class="bowl-card">
+        <div class="price-tag"><small>Rp18rb</small> Rp12rb</div>
+        <img class="bowl-img" src="https://images.unsplash.com/photo-1585032226651-759b368d7246?q=80&w=800&auto=format&fit=crop" alt="Mie Dower pedas" onerror="this.style.display='none'" />
+        <div style="display:flex;justify-content:space-between;align-items:center;padding:16px 6px 4px">
+          <div><b>Mie Dower Original</b><br><small style="color:#78716C">Best seller • Level 3 favorit</small></div>
+          <div style="color:#F59E0B;font-weight:800">★ 4.9</div>
+        </div>
+      </div>
+      <div class="float-card float-1">
+        <div class="float-icon" style="background:#DCFCE7">●</div>
+        <div>100% Halal<br><small style="color:#78716C;font-weight:500">Fresh setiap hari</small></div>
+      </div>
+      <div class="float-card float-2">
+        <div class="float-icon" style="background:#FFEDD5">●</div>
+        <div>Bisa GoFood / Grab<br><small style="color:#78716C;font-weight:500">Antar < 30 mnt</small></div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<section id="keunggulan" style="padding-top:24px">
+  <div class="container">
+    <div class="section-head">
+      <span class="eyebrow">Kenapa Mie Dower?</span>
+      <h2>Bukan Mie Pedas Biasa</h2>
+      <p>Racikan bumbu spesial yang medok, mie kenyal yang nggak lembek, dan porsi yang ngenyangin.</p>
+    </div>
+    <div class="grid-4">
+      <div class="feat">
+        <div class="feat-icon" style="background:#FEE2E2">◉</div>
+        <h3>Mie Fresh Harian</h3>
+        <p>Mie dibuat fresh setiap pagi. Kenyal, tidak lembek walau dicampur bumbu pedas.</p>
+      </div>
+      <div class="feat">
+        <div class="feat-icon" style="background:#FFEDD5">◉</div>
+        <h3>Bumbu Medok</h3>
+        <p>Racikan cabai asli + rempah pilihan. Pedasnya nampol, gurihnya tetap kerasa.</p>
+      </div>
+      <div class="feat">
+        <div class="feat-icon" style="background:#FEF3C7">◉</div>
+        <h3>Level 1 – 8</h3>
+        <p>Dari anak manis sampai pecinta tantangan. Pilih level sesuai nyalimu.</p>
+      </div>
+      <div class="feat">
+        <div class="feat-icon" style="background:#DCFCE7">◉</div>
+        <h3>Harga Mahasiswa</h3>
+        <p>Mulai Rp12rb udah kenyang. Banyak topping tambahan cuma Rp3–5rb.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="menu">
+  <div class="container">
+    <div class="section-head">
+      <span class="eyebrow">Menu Favorit</span>
+      <h2>Paling Sering Dipesan</h2>
+      <p>Semua menu bisa pilih level 1–8. Free es teh untuk pembelian 2 porsi ke atas.</p>
+    </div>
+    <div class="grid-3">
+      <div class="menu-card popular">
+        <div class="best-badge">★ BEST SELLER</div>
+        <img class="menu-img" src="https://images.unsplash.com/photo-1569718212165-3a8278d5f624?q=80&w=600&auto=format&fit=crop" alt="Mie Dower Original" loading="lazy" />
+        <div class="menu-body">
+          <span class="menu-tag tag-red">Pedas Gurih</span>
+          <h3>Mie Dower Original</h3>
+          <p>Mie kenyal + bumbu dower signature + taburan bawang goreng & daun bawang.</p>
+          <div class="menu-foot">
+            <div class="price">Rp12rb <small>/ porsi</small></div>
+            <a class="btn btn-primary btn-small" href="https://wa.me/6281234567890?text=Saya%20pesan%20Mie%20Dower%20Original" target="_blank">Pesan</a>
+          </div>
+        </div>
+      </div>
+      <div class="menu-card">
+        <img class="menu-img" src="https://images.unsplash.com/photo-1591814468924-caf88d1232e1?q=80&w=600&auto=format&fit=crop" alt="Mie Dower Keju" loading="lazy" />
+        <div class="menu-body">
+          <span class="menu-tag tag-orange">Favorit Anak Muda</span>
+          <h3>Mie Dower Keju Lumer</h3>
+          <p>Bumbu dower + lelehan keju mozzarella. Pedas gurih creamy, nggak enek.</p>
+          <div class="menu-foot">
+            <div class="price">Rp15rb <small>/ porsi</small></div>
+            <a class="btn btn-primary btn-small" href="https://wa.me/6281234567890?text=Saya%20pesan%20Mie%20Dower%20Keju" target="_blank">Pesan</a>
+          </div>
+        </div>
+      </div>
+      <div class="menu-card">
+        <img class="menu-img" src="https://images.unsplash.com/photo-1552611052-33e04de081de?q=80&w=600&auto=format&fit=crop" alt="Mie Dower Ceker" loading="lazy" />
+        <div class="menu-body">
+          <span class="menu-tag tag-green">Porsi Jumbo</span>
+          <h3>Mie Dower Ceker Mercon</h3>
+          <p>Mie dower + 3 ceker empuk dimasak mercon. Tambah pangsit goreng free.</p>
+          <div class="menu-foot">
+            <div class="price">Rp15rb <small>/ porsi</small></div>
+            <a class="btn btn-primary btn-small" href="https://wa.me/6281234567890?text=Saya%20pesan%20Mie%20Dower%20Ceker" target="_blank">Pesan</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <p style="text-align:center;margin-top:24px;color:#78716C;font-size:14px">Topping: Telur Rp4rb • Ayam Suwir Rp5rb • Pangsit 3pcs Rp5rb • Keju Extra Rp5rb • Kerupuk Rp3rb</p>
+  </div>
+</section>
+
+<section id="level">
+  <div class="container">
+    <div class="level-box">
+      <span class="eyebrow" style="color:#FBBF24">Tantangan Pedas</span>
+      <h2>Pilih Level Nyalimu</h2>
+      <p>Klik level buat lihat deskripsinya. Semua pakai cabai asli, bukan perasa.</p>
+      <div class="levels" id="levels">
+        <button class="lvl" data-lvl="1">1</button>
+        <button class="lvl" data-lvl="2">2</button>
+        <button class="lvl active" data-lvl="3">3</button>
+        <button class="lvl" data-lvl="4">4</button>
+        <button class="lvl" data-lvl="5">5</button>
+        <button class="lvl" data-lvl="6">6</button>
+        <button class="lvl" data-lvl="7">7</button>
+        <button class="lvl" data-lvl="8">8</button>
+      </div>
+      <div class="level-desc" id="levelDesc"><b>Level 3 — Favorit Pemula:</b> pedas manis gurih, masih aman buat yang baru coba. Paling sering dipesan!</div>
+      <div style="margin-top:24px;position:relative;z-index:1">
+        <a href="https://wa.me/6281234567890?text=Halo!%20Saya%20mau%20tantangan%20Level%20" target="_blank" class="btn btn-white" id="levelCta">Pesan Level 3 Sekarang</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="cara" style="padding-top:0">
+  <div class="container">
+    <div class="section-head">
+      <span class="eyebrow">Gampang Banget</span>
+      <h2>Cara Pesan 30 Detik</h2>
+    </div>
+    <div class="grid-steps">
+      <div class="step"><div class="step-num">1</div><h3>Pilih Menu & Level</h3><p style="color:#78716C;font-size:14px;margin-top:8px">Chat WhatsApp / GoFood / datang langsung ke outlet.</p></div>
+      <div class="step"><div class="step-num">2</div><h3>Kami Masak Fresh</h3><p style="color:#78716C;font-size:14px;margin-top:8px">Dimasak dadakan ±7 menit. Dijamin masih panas sampai tangan.</p></div>
+      <div class="step"><div class="step-num">3</div><h3>Antar / Ambil</h3><p style="color:#78716C;font-size:14px;margin-top:8px">Diantar ojek online atau ambil sendiri + gratis es teh.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="testimoni">
+  <div class="container">
+    <div class="section-head">
+      <span class="eyebrow">Kata Mereka</span>
+      <h2>Udah 2.300+ Ulasan Bintang 5</h2>
+    </div>
+    <div class="grid-3">
+      <div class="testi-card">
+        <div class="stars">★★★★★</div>
+        <p>"Level 5-nya nampol tapi nagih! Mie-nya kenyal, bumbunya medok. Seminggu bisa 3x jajan."</p>
+        <div class="testi-user"><div class="avatar" style="background:#DC2626">R</div><div><b>Rizka Putri</b><small>Mahasiswa • Level 5</small></div></div>
+      </div>
+      <div class="testi-card">
+        <div class="stars">★★★★★</div>
+        <p>"Yang keju lumer juara banget. Pedasnya ketutup creamy keju, anakku aja doyan level 1."</p>
+        <div class="testi-user"><div class="avatar" style="background:#EA580C">D</div><div><b>Dimas Arya</b><small>Karyawan • Level 2</small></div></div>
+      </div>
+      <div class="testi-card">
+        <div class="stars">★★★★★</div>
+        <p>"Porsi ngenyangin, harga masih 12rb. Ceker merconnya empuk banget, bumbunya meresap."</p>
+        <div class="testi-user"><div class="avatar" style="background:#16A34A">S</div><div><b>Salsa Bila</b><small>Pelajar • Level 3</small></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="kontak" style="padding-top:24px">
+  <div class="container">
+    <div class="cta-grid">
+      <div class="info-card">
+        <span class="eyebrow">Lokasi & Jam</span>
+        <h2 style="font-size:24px;margin-bottom:20px">Mampir, Yuk!</h2>
+        <div class="info-row"><div class="info-ic">◍</div><div><b>Jl. Pedas No. 88, Yogyakarta</b><br><small style="color:#78716C">Depan kampus, parkir luas, tempat nongkrong enak</small></div></div>
+        <div class="info-row"><div class="info-ic">◷</div><div><b>Senin – Minggu, 10.00 – 22.00</b><br><small style="color:#78716C">Jumat libur 11.30 – 13.00</small></div></div>
+        <div class="info-row"><div class="info-ic">✆</div><div><b>0812-3456-7890</b><br><small style="color:#78716C">WA / Telepon • GoFood & GrabFood: "Mie Dower"</small></div></div>
+      </div>
+      <div class="cta-card">
+        <h3>Laper? Jangan Ditahan.</h3>
+        <p>Klik tombol di bawah, mie panas langsung dimasak. Gratis es teh hari ini!</p>
+        <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap">
+          <a href="https://wa.me/6281234567890?text=Halo%20Mie%20Dower!%20Saya%20mau%20pesan%20sekarang." target="_blank" class="btn btn-wa">Pesan Sekarang</a>
+          <a href="https://maps.google.com/?q=Mie+Dower" target="_blank" class="btn btn-white">Lihat Maps</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <b>Mie Dower</b> — Pedasnya Bikin Nagih 🌶<br>
+    © 2026 Mie Dower • Dibuat dengan sepenuh hati di Yogyakarta
+  </div>
+</footer>
+
+<a class="wa-float" href="https://wa.me/6281234567890?text=Halo%20Mie%20Dower!" target="_blank" aria-label="Chat WhatsApp">
+  <svg width="30" height="30" viewBox="0 0 24 24" fill="#fff"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm5.2 14.2c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .2-3.4-.7-2.9-1.2-4.7-4.1-4.9-4.3-.1-.2-1.1-1.5-1.1-2.9s.7-2 1-2.3c.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.5s.8 1.9.8 2c.1.1.1.3 0 .5-.3.6-.6.8-.4 1.1.7 1.2 1.6 2 2.8 2.6.3.2.5.1.7-.1l.8-.9c.2-.3.4-.2.7-.1l2 1c.3.1.5.2.6.4 0 .1 0 .7-.1 1.3z"/></svg>
+</a>
+
+<script>
+  const desc = {
+    1: "<b>Level 1 — Anak Manis:</b> gurih dominan, pedas tipis anget. Cocok buat anak & pemula.",
+    2: "<b>Level 2 — Pemanasan:</b> mulai kerasa nampol, masih santai dinikmati.",
+    3: "<b>Level 3 — Favorit Pemula:</b> pedas manis gurih, masih aman buat yang baru coba. Paling sering dipesan!",
+    4: "<b>Level 4 — Mulai Serius:</b> keringetan dikit, tapi nagih. Buat yang udah biasa makan pedas.",
+    5: "<b>Level 5 — Dower Asli:</b> pedasnya nempel di lidah. Jangan lupa pesen es teh!",
+    6: "<b>Level 6 — Penantang:</b> mulut panas, perut aman (kalau kuat). Tanda tangan dulu? Enggak kok.",
+    7: "<b>Level 7 — Brutal:</b> hanya untuk yang berpengalaman. Siapkan tisu & mental.",
+    8: "<b>Level 8 — Dewa Dower:</b> cabai 3x lipat + bubuk mercon. Berani coba? Gratis foto di Wall of Fame kalau habis!"
+  };
+  const btns = document.querySelectorAll('.lvl');
+  const box = document.getElementById('levelDesc');
+  const cta = document.getElementById('levelCta');
+  btns.forEach(b => b.addEventListener('click', () => {
+    btns.forEach(x => x.classList.remove('active'));
+    b.classList.add('active');
+    const l = b.dataset.lvl;
+    box.innerHTML = desc[l];
+    cta.textContent = 'Pesan Level ' + l + ' Sekarang';
+    cta.href = 'https://wa.me/6281234567890?text=Halo!%20Saya%20mau%20tantangan%20Level%20' + l;
+  }));
+</script>
+</body>
+</html>
